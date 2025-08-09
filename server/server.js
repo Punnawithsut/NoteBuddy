@@ -8,4 +8,4 @@ app.use(cors());
 
 app.listen(PORT, () => {
     console.log(`Currently listen to ${PORT}`);
-})
+});
