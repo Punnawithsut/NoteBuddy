@@ -1,24 +1,30 @@
-name: Lint Code
+name: Lint Both
 
-on:
-  pull_request:
-    branches:
-      - main  # or your default branch
+on: [pull_request]
 
 jobs:
-  lint:
+  lint-client:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install client dependencies
+        run: cd client && npm install
+      - name: Run client lint
+        run: cd client && npm run lint
 
-    - name: Use Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Run ESLint
-      run: npm run lint   # make sure your package.json has a lint script
+  lint-server:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install server dependencies
+        run: cd server && npm install
+      - name: Run server lint
+        run: cd server && npm run lint
