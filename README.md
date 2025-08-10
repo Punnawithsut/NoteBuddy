@@ -45,6 +45,8 @@ npm run server
 * **cloudinary** — Stores and manages uploaded files in the cloud.
 * **bcrypt** — Encrypts and compares passwords securely.
 * **mongoose** — Connects and interacts with MongoDB Atlas.
+* **jsonwebtoken (JWT)** – For user authentication and secure token generation/verification.
+* **multer** – For handling multipart/form-data and file uploads.
 * **dotenv** — Loads environment variables from `.env` files.
 * **nodemon** — Automatically restarts the server on code changes (dev only).
 
