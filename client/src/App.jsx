@@ -1,10 +1,14 @@
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 function App() {
   return (
-    <div className="">
-      <h1 className='text-lg text-blue-700'>TAILWINDCSS TEST</h1>
-      <h1 className="text-2xl">HELLO</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route></Route>
+        <Route></Route>
+        <Route></Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
