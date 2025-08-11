@@ -21,7 +21,7 @@ app.listen(PORT, () => {
 
 app.get("/api/status", (req, res) => {
     res.json("Server Live Right now!");
-})
+});
 
 app.use("/api/auth", authRoute);
 
