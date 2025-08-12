@@ -8,4 +8,4 @@ const AccountForm = () => {
   )
 }
 
-export default AccountForm
+export default AccountForm;

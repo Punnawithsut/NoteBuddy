@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 axios.defaults.baseURL = baseURL;
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(
