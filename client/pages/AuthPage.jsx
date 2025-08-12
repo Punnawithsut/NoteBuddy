@@ -4,9 +4,9 @@ import AccountForm from '../components/AccountForm.jsx'
 import { AuthContext } from '../context/AuthContext.jsx'
 
 const AuthPage = () => {
-  const { loading } = useContext(AuthContext);
   return (
-    <div>
+    <div className="min-h-screen flex flex-col bg-gray-100 
+    flex-grow justify-center items-center">
       <AccountForm />
     </div>
   )

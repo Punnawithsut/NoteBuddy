@@ -9,19 +9,21 @@ function App() {
   const { authUser } = useContext(AuthContext);
   return (
     <BrowserRouter>
-      {authUser && <NavBar />}
-      <Routes>
-        <Route 
-        path="/" 
-        element={authUser ?  <Navigate to='/home'/>: <AuthPage />}
-        />
-        <Route 
-        path="/home"
-        element={authUser ?  <HomePage />: <Navigate to='/'/>}
-        />
-      </Routes>
+      <div className="min-h-screen bg-gray-50">
+        <NavBar />
+        <Routes>
+          <Route
+            path="/"
+            element={authUser ? <HomePage /> : <Navigate to="/auth" />}
+          />
+          <Route
+            path="/auth"
+            element={authUser ? <Navigate to="/" /> : <AuthPage />}
+          />
+        </Routes>
+      </div>
     </BrowserRouter>
-  )
+  );
 }
 
 export default App;

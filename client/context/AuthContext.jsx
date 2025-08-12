@@ -15,6 +15,18 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    const ExpireDate = Number(localStorage.getItem("tokenExpiry"));
+    if(!ExpireDate) {
+      logout();
+    } else {
+      const difference = ExpireDate - Date.now();
+      if(difference < 0) {
+        logout();
+      }
+    }
+  }, []);
+
+  useEffect(() => {
     if (token) {
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     } else {
@@ -54,7 +66,7 @@ export const AuthProvider = ({ children }) => {
       setToken(token);
       setUser(user);
 
-      const expiresAt = Date.now() + 24 * 60 * 60 * 1000; // 1 day
+      const expiresAt = Date.now() + 24 * 60 * 60 * 1000;
       localStorage.setItem("token", token);
       localStorage.setItem("tokenExpiry", expiresAt.toString());
 
@@ -66,12 +78,20 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const logout = () => {
+    setUser(null);
+    setToken(null);
+    localStorage.removeItem("token");
+    localStorage.removeItem("tokenExpiry");
+  }
+
   const value = {
     user,
     token,
     loading,
     signin,
     login,
+    logout,
   };
 
   return (<AuthContext.Provider value={value}>
