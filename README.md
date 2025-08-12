@@ -2,7 +2,7 @@
 
 # **NoteBuddy**
 
-A full-stack note-taking web application with secure authentication, cloud file storage, and a responsive UI.
+A full-stack note-posting web application with secure authentication, cloud file storage, and a responsive UI.
 
 ---
 
