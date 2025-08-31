@@ -27,15 +27,40 @@ export const AuthProvider = ({ children }) => {
 
       toast.success(data.message);
     } catch (error) {
-      console.log(error.message);
-      toast.error(error.response.data.message);
+      const message = error.response?.data?.message || error.message;
+      console.log(message);
+      toast.error(message);
     }
   };
+
+  const login = async (email, password) => {
+    try {
+      const response = await axios.post("/api/auth/login", {
+      email, 
+      password,
+    });
+    const data = response.data;
+
+    if(!data.success) {
+      toast.error(data.message);
+      return;
+    }
+    console.log(response.data);
+    setToken(data.token);
+    setUser(data.user);
+    toast.success(data.message);
+    } catch (error) {
+      const message = error.response?.data?.message || error.message;
+      console.log(message);
+      toast.error(message);
+    }
+  }
 
   const value = {
     token,
     user,
     signin,
+    login, 
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
