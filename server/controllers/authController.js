@@ -27,13 +27,14 @@ export const signin = async (req, res) => {
 
         return res.status(200).json({ success: true, message: "User Created Successfully "});
     } catch (error) {
+        console.log(error);
         return res.status(500).json({ success: false, message: "Server Error" });
     }
 }
 
 export const login = async (req, res) => {
     try {
-        const {userName, email, password} = req.body;
+        const {email, password} = req.body;
 
         const user = await userModel.findOne({ email });
         if(!user) {
@@ -49,8 +50,9 @@ export const login = async (req, res) => {
             expiresIn: "1d",
         });
 
-        return res.status(200).json({ success: true, user: { id: user._id, userName, email, } });
+        return res.status(200).json({ success: true, token, user: { id: user._id, userName: user.userName, email, } });
     } catch (error) {
+        console.log(error);
         return res.status(500).json({ success: false, message: "Server Error" });
     }
 }

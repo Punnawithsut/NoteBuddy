@@ -1,24 +1,24 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import AuthPage from "../pages/AuthPage.jsx";
 import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext.jsx";
 import NavBar from "../components/NavBar.jsx";
 import HomePage from "../pages/HomePage.jsx";
+import { AuthContext } from "../context/AuthContext.jsx";
 
 function App() {
-  const { authUser } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-gray-50">
+      <div>
         <NavBar />
         <Routes>
           <Route
             path="/"
-            element={authUser ? <HomePage /> : <Navigate to="/auth" />}
+            element={user ? <HomePage /> : <Navigate to="/auth" />}
           />
           <Route
             path="/auth"
-            element={authUser ? <Navigate to="/" /> : <AuthPage />}
+            element={user ? <Navigate to="/" /> : <AuthPage />}
           />
         </Routes>
       </div>
