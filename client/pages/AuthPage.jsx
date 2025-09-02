@@ -1,4 +1,3 @@
-import { useContext } from 'react'
 import AccountForm from '../components/AccountForm.jsx'
 
 const AuthPage = () => {

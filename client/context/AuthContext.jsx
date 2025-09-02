@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import toast from "react-hot-toast";
 
 const baseURL = import.meta.env.VITE_BACKEND_URL;
