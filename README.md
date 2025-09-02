@@ -105,3 +105,17 @@ NoteBuddy/
 * PRs will not be merged unless linting passes.
 
 ---
+
+## **5. Environment Setting**
+
+create .env file in both client and server directories
+
+### **Frontend**
+* include VITE_BACKEND_URL = "http://localhost:5000"
+
+### ""Backend**
+* include MONGODB_URI = "YOUR API KEY"
+* include MONGODB_NAME = "YOUR COLLECTION NAME"
+* include JWT_SECRET = "YOUR JWT SECRET"
+
+---
