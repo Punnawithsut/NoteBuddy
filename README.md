@@ -113,7 +113,7 @@ create .env file in both client and server directories
 ### **Frontend**
 * include VITE_BACKEND_URL = "http://localhost:5000"
 
-### ""Backend**
+### **Backend**
 * include MONGODB_URI = "YOUR API KEY"
 * include MONGODB_NAME = "YOUR COLLECTION NAME"
 * include JWT_SECRET = "YOUR JWT SECRET"
