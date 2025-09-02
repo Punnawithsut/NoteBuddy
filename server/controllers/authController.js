@@ -2,12 +2,6 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { userModel } from "../models/user.js";
 
-
-const jwt_secret = process.env.JWT_SECRET;
-if(!jwt_secret) {
-    console.log("No JWT_SECRET in .env File");
-}
-
 export const signin = async (req, res) => {
     try {
         const {userName, email, password} = req.body;
@@ -27,13 +21,14 @@ export const signin = async (req, res) => {
 
         return res.status(200).json({ success: true, message: "User Created Successfully "});
     } catch (error) {
+        console.log(error);
         return res.status(500).json({ success: false, message: "Server Error" });
     }
 }
 
 export const login = async (req, res) => {
     try {
-        const {userName, email, password} = req.body;
+        const {email, password} = req.body;
 
         const user = await userModel.findOne({ email });
         if(!user) {
@@ -45,12 +40,18 @@ export const login = async (req, res) => {
             return res.status(400).json({ success: false, message: "Invalid Email or Password "});
         }
 
+        const jwt_secret = process.env.JWT_SECRET;
+        if(!jwt_secret) {
+            console.log("No JWT_SECRET in .env File");
+        }
+
         const token = jwt.sign({ id: user._id, email: email }, jwt_secret, {
             expiresIn: "1d",
         });
 
-        return res.status(200).json({ success: true, user: { id: user._id, userName, email, } });
+        return res.status(200).json({ success: true, token, user: { id: user._id, userName: user.userName, email, }, message: "Login Successfully!" });
     } catch (error) {
+        console.log(error);
         return res.status(500).json({ success: false, message: "Server Error" });
     }
 }
